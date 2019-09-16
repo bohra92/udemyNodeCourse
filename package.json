@@ -1,0 +1,26 @@
+{
+  "name": "udemynodecourse",
+  "version": "1.0.0",
+  "description": "contains the works of udemy node course",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bohra92/udemyNodeCourse.git"
+  },
+  "author": "Tanuj Bohra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bohra92/udemyNodeCourse/issues"
+  },
+  "homepage": "https://github.com/bohra92/udemyNodeCourse#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "global": "^4.4.0",
+    "nodemon": "^1.19.2",
+    "validator": "^11.1.0",
+    "yargs": "^14.0.0"
+  }
+}
