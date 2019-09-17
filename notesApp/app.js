@@ -1,5 +1,5 @@
 const yargs = require('yargs');
-
+const notes = require('./notes.js')
 //console.log(getNotes());
 //yargs.command(command,describe,builder,handler())
 yargs.version('1.1.0')
@@ -8,25 +8,24 @@ yargs.version('1.1.0')
 yargs.command(
   'add',
   'adding a note', {
-    title: {
-      alias: 't',
+    name: {
+      alias: 'n',
       type: 'string',
-      describe: 'note title',
+      describe: 'note name',
       demandOption: true
     },
-    marks: {
-      alias: 'm',
-      type: 'number',
-      describe: 'note marks',
-      demandOption: false
+    technology: {
+      alias: 't',
+      type: 'string',
+      describe: 'note technology',
+      demandOption: true
     }
   },
   (argv) => {
-    console.log("Adding a new note with \n title :", argv.title, "\n marks :", argv.marks)
-    //function goes here
-    if (isNaN(argv.m) || typeof(argv.t) != "string") {
-      console.log("marks/title are not in correct type");
+    if (typeof(argv.n) != "string" || typeof(argv.t) != "string") {
+      console.log("technology/name are not in correct type");
     } else {
+      notes.addNote(argv.name, argv.technology)
       console.log("Added successfully");
     }
   })
@@ -35,10 +34,10 @@ yargs.command(
 yargs.command(
   'rv',
   'removing a note a note', {
-    title: {
-      alias: 't',
+    name: {
+      alias: 'n',
       type: 'string',
-      describe: 'note title',
+      describe: 'note name',
       demandOption: true
     }
   },
@@ -51,10 +50,10 @@ yargs.command(
 yargs.command(
   'read',
   'Reading a note', {
-    title: {
-      alias: 't',
+    name: {
+      alias: 'n',
       type: 'string',
-      describe: 'note title',
+      describe: 'note name',
       demandOption: true
     }
   },
