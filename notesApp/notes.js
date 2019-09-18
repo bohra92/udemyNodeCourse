@@ -20,8 +20,14 @@ const addNote = (name, technology) => {
       technology: technology
     })
     saveNote(notes)
-    console.log(chalk.inverse.blue(`Note ${name} Added successfully`));
-  } else console.log(chalk.inverse.red(`Name ${name} Already Taken`));
+    return {
+      msg: chalk.inverse.blue(`Note ${name} Added successfully`),
+      success: true
+    }
+  } else return {
+    msg: chalk.inverse.red(`Name ${name} Already Taken`),
+    success: false
+  };
 }
 
 const removeNote = (name) => {
@@ -31,8 +37,14 @@ const removeNote = (name) => {
   })
   saveNote(notesToKeep)
   if (notes.length > notesToKeep.length) {
-    console.log(chalk.inverse.blue(`Note ${name} removed successfully`));
-  } else console.log(chalk.inverse.red(`Note ${name} not found in records`));
+    return {
+      msg: chalk.inverse.blue(`Note ${name} removed successfully`),
+      success: true
+    }
+  } else return {
+    msg: chalk.inverse.red(`Note ${name} not found in records`),
+    success: false
+  }
 }
 
 const readNote = (name) => {
@@ -40,8 +52,28 @@ const readNote = (name) => {
   const notes = loadNotes()
   const desiredNote = notes.find((note) => note.name === name)
   if (!desiredNote) {
-    console.log(chalk.inverse.red(`Note ${name} not found in records`));
-  } else console.log(chalk.inverse.green(`Note ${name} found in records \nNAME:  ${desiredNote.name} \nTECH.:  ${desiredNote.technology}`))
+    return {
+      msg: chalk.inverse.red(`Note ${name} not found in records`),
+      success: false
+    }
+  } else return {
+    msg: chalk.inverse.green(`Note ${name} found in records \nNAME:  ${desiredNote.name} \nTECH.:  ${desiredNote.technology}`),
+    success: true
+  }
+}
+
+const updateNote = (name, technology) => {
+  if (removeNote(name).success) {
+    if (addNote(name, technology).success) {
+      return {
+        msg: chalk.inverse.green(`Note with name ${name} updated`),
+        success: true
+      }
+    }
+  } else return {
+    msg: chalk.inverse.red(`Note with name ${name} not found`),
+    success: false
+  }
 }
 
 const loadNotes = () => {
@@ -62,5 +94,6 @@ module.exports = {
   getAllNotes: getAllNotes,
   addNote: addNote,
   removeNote: removeNote,
-  readNote: readNote
+  readNote: readNote,
+  updateNote: updateNote
 }

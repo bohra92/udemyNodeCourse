@@ -26,7 +26,7 @@ yargs.command(
     if (typeof(argv.n) != "string" || typeof(argv.t) != "string") {
       console.log(chalk.inverse.red("technology/name are not in correct type"))
     } else {
-      notes.addNote(argv.name, argv.technology)
+      console.log(notes.addNote(argv.name, argv.technology).msg);
 
     }
   }).argv
@@ -44,7 +44,7 @@ yargs.command(
   },
   (argv) => {
     console.log("Removing a note");
-    notes.removeNote(argv.name)
+    console.log(notes.removeNote(argv.name).msg);
   }).argv
 
 //reading a note ***************************************************************
@@ -60,7 +60,8 @@ yargs.command(
   },
   (argv) => {
     console.log("Reading a new note")
-    notes.readNote(argv.name)
+    console.log();
+    console.log(notes.readNote(argv.name).msg);
   }).argv
 
 //listing all the notes ********************************************************
@@ -71,5 +72,31 @@ yargs.command(
     console.log("listing all the notes");
     notes.getAllNotes()
   }).argv
+
+//listing all the notes ********************************************************
+yargs.command(
+  'upt',
+  'updating a note', {
+    name: {
+      alias: 'n',
+      type: 'string',
+      describe: 'note name',
+      demandOption: true
+    },
+    technology: {
+      alias: 't',
+      type: 'string',
+      describe: 'note technology',
+      demandOption: true
+    }
+  },
+  (argv) => {
+    if (typeof(argv.n) != "string" || typeof(argv.t) != "string") {
+      console.log(chalk.inverse.red("technology/name are not in correct type"))
+    } else {
+      console.log(notes.updateNote(argv.name, argv.technology).msg);
+    }
+  }).argv
+
 
 //console.log(yargs.argv);
