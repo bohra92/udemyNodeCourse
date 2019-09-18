@@ -1,6 +1,7 @@
 const yargs = require('yargs');
 const notes = require('./notes.js')
-//console.log(getNotes());
+const chalk = require('chalk');
+
 //yargs.command(command,describe,builder,handler())
 yargs.version('1.1.0')
 
@@ -23,12 +24,12 @@ yargs.command(
   },
   (argv) => {
     if (typeof(argv.n) != "string" || typeof(argv.t) != "string") {
-      console.log("technology/name are not in correct type");
+      console.log(chalk.inverse.red("technology/name are not in correct type"))
     } else {
       notes.addNote(argv.name, argv.technology)
-      console.log("Added successfully");
+
     }
-  })
+  }).argv
 
 //removing a note **************************************************************
 yargs.command(
@@ -41,10 +42,10 @@ yargs.command(
       demandOption: true
     }
   },
-  () => {
-    //function goes here
-    console.log("Removing a new note");
-  })
+  (argv) => {
+    console.log("Removing a note");
+    notes.removeNote(argv.name)
+  }).argv
 
 //reading a note ***************************************************************
 yargs.command(
@@ -69,4 +70,4 @@ yargs.command(
     console.log("listing all the notes");
   })
 
-console.log(yargs.argv);
+//console.log(yargs.argv);
