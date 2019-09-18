@@ -58,9 +58,10 @@ yargs.command(
       demandOption: true
     }
   },
-  () => {
-    console.log("Reading a new note");
-  })
+  (argv) => {
+    console.log("Reading a new note")
+    notes.readNote(argv.name)
+  }).argv
 
 //listing all the notes ********************************************************
 yargs.command(
@@ -68,6 +69,6 @@ yargs.command(
   'listing all the notes',
   () => {
     console.log("listing all the notes");
-  })
+  }).argv
 
 //console.log(yargs.argv);

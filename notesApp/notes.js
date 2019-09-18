@@ -31,6 +31,15 @@ const removeNote = (name) => {
   } else console.log(chalk.inverse.red(`Note ${name} not found in records`));
 }
 
+const readNote = (name) => {
+  console.log(name);
+  const notes = loadNotes()
+  const desiredNote = notes.find((note) => note.name === name)
+  if (!desiredNote) {
+    console.log(chalk.inverse.red(`Note ${name} not found in records`));
+  } else console.log(chalk.inverse.green(`Note ${name} found in records \nNAME:  ${desiredNote.name} \nTECH.:  ${desiredNote.technology}`))
+}
+
 const loadNotes = () => {
   try {
     const notesBuffer = fs.readFileSync('notes.json')
@@ -48,5 +57,7 @@ const saveNote = (notes) => {
 module.exports = {
   getNotes: getNotes,
   addNote: addNote,
-  removeNote: removeNote
+  removeNote: removeNote,
+  readNote: readNote
+
 }
