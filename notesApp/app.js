@@ -69,6 +69,7 @@ yargs.command(
   'listing all the notes',
   () => {
     console.log("listing all the notes");
+    notes.getAllNotes()
   }).argv
 
 //console.log(yargs.argv);
