@@ -29,7 +29,7 @@ yargs.command(
       console.log(notes.addNote(argv.name, argv.technology).msg);
 
     }
-  }).argv
+  })
 
 //removing a note **************************************************************
 yargs.command(
@@ -45,7 +45,7 @@ yargs.command(
   (argv) => {
     console.log("Removing a note");
     console.log(notes.removeNote(argv.name).msg);
-  }).argv
+  })
 
 //reading a note ***************************************************************
 yargs.command(
@@ -62,7 +62,7 @@ yargs.command(
     console.log("Reading a new note")
     console.log();
     console.log(notes.readNote(argv.name).msg);
-  }).argv
+  })
 
 //listing all the notes ********************************************************
 yargs.command(
@@ -71,7 +71,7 @@ yargs.command(
   () => {
     console.log("listing all the notes");
     notes.getAllNotes()
-  }).argv
+  })
 
 //listing all the notes ********************************************************
 yargs.command(
